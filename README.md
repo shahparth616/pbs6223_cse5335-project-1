@@ -1,39 +1,35 @@
-# node-js-getting-started
+# Name: Parth Shah
+## ID: 1001126223
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+> What server framework did you choose and why?
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+I used Node.js because it is easy to use and a lot of material on internet is easily available. Additionally Node js express adds dead simple routing and support for Connect middleware, allowing many extensions and useful features.
 
-## Running Locally
+> What client framework did you choose and why?
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+I used JQuery framework because jQuery is a lightweight, "write less, do more", JavaScript library. The purpose of jQuery is to make it much easier to use JavaScript on your website. JQuery takes a lot of common tasks that require many lines of JavaScript code to accomplish, and wraps them into methods that you can call with a single line of code.
+
+> What aspect of the implementation did you find easy, if any, and why?
+
+Using Jquery was easy. Because I had past experience using it.
+
+> What aspect of the implementation did you find hard, if any, and why?
+
+Creating a map was bit challanging. Because this was the first time i had to ancounter this proble.
+
+> What components OTHER than your client and server framework did you install,
+if any, and if so, what is their purpose for your solution?
+
+I used googles Map and chart APIs. For that required frameworks were installed.
+
+> What Ubuntu commands are required to deploy and run your server?
 
 ```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```
+$ heroku login
+$ git clone https://github.com/shahparth616/pbs6223_cse5335-project-1.git
+$ cd pbs6223_cse5335-project-1
 $ heroku create
 $ git push heroku master
+$ heroku ps:scale web=1
 $ heroku open
 ```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
