@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>google.load("visualization", "1", {packages:["columnchart"]});
+</script>
+
+
+
+
+
+
+<style>
+h1 {
+    border-bottom: 4px solid #cc9900;
+    color: #996600;
+    font-size: 30px;
+    
+}
+table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd)	{
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+</style>
+</head>
+
+
+
+
+
+<body>
+<div>
+<center><button id="show">Show</button></center>
+</div>
+<div><h1>STATE MINIMUM WAGE LEGISLATION</h1></div>
+<div style="float:left">
+<table id="mytable">
+
+    <tr>
+        <th>No</th>
+        <th>State</th>
+        <th>Wage</th>
+    </tr>
+    
+</table>
+</div>
+<div id="map" style=" float:right; height: 340px; width: 700px;">  
+</div>
+<br/> <br/> 
+<div id="chart_div" style=" float:right;"></div>
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+$("#mytable").hide();
+$("h1").hide();
+
+
+$("#show").click(function()
+{
+$("#show").hide(1000);
+$("#mytable").show(1000);
+$("h1").show(1000);
+$.ajax({
+    url: "/getdata",
+    type: "GET",
+	dataType: "json",
+    success: function(arr)
+    {   	
+        var i;
+	    for(i = 0; i < arr.length; i++) 
+	    {
+	    	var out = $("<tr />");	
+	   		 $("#mytable").append(out); 
+		     out.append($("<td>" + arr[i].no + "</td>"));
+		  	 out.append($("<td>" + arr[i].state + "</td>"));
+		   	 out.append($("<td>" + arr[i].wage + "</td>"));		   	 
+	    }
+	 var mymap1 = document.getElementById("map");
+	 var newmap = new google.maps.Map(mymap1,{center:{lat:38.8833,lng:-97.0167},zoom:4});
+	   
+	  
+		var show,i;
+		for(i=0;i<arr.length;i++)
+		{
+			var position = new google.maps.LatLng(arr[i].lat,arr[i].long);
+			show = new google.maps.Marker({position:position,map:newmap,title:arr[i].state+','+arr[i].wage});
+		}
+			
+		var dataTable = new google.visualization.DataTable();
+		dataTable.addColumn("string","States");
+		dataTable.addColumn("number", "Minimum Wage");
+		for(i=0;i<arr.length;i++)
+		{
+		dataTable.addRows([[arr[i].state,Number(arr[i].wage)]]);
+		}
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+		var r = {width:800, height:500, title: 'Minimum Wage'};
+		chart.draw(dataTable, r);
+
+
+
+	}
+});
+});
+});
+
+
+</script>
+
+</body>
+</html>
+
+
+
